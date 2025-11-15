@@ -86,7 +86,6 @@ public class GiaoDien extends JFrame {
         headerPanel.setPreferredSize(new Dimension(1200, 80));
         headerPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
         
-        // Header title and user text (no icons)
         JLabel titleLabel = new JLabel("Quản lý cửa hàng sách");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 28));
         titleLabel.setForeground(Color.WHITE);
@@ -216,7 +215,6 @@ public class GiaoDien extends JFrame {
         JPanel statsPanel = new JPanel(new GridLayout(2, 2, 15, 15));
         statsPanel.setBackground(Color.WHITE);
         
-        // Tạo các card thống kê (text-only, no icons)
         JPanel card1 = taoTheThongKe("", "Tổng sách", String.valueOf(quanLySach.layTatCa().size()), new Color(41, 128, 185));
         JPanel card2 = taoTheThongKe("", "Khách hàng", String.valueOf(quanLyKhachHang.layTatCa().size()), new Color(39, 174, 96));
         JPanel card3 = taoTheThongKe("", "Hóa đơn", String.valueOf(quanLyHoaDon.layTatCa().size()), new Color(243, 156, 18));
@@ -266,7 +264,6 @@ public class GiaoDien extends JFrame {
     private JPanel taoTheThongKe(String icon, String title, String value, Color color) {
         JPanel card = new JPanel(new BorderLayout());
         card.setBackground(color);
-        // Add a visible border with inner padding so the border does not overlap content
         card.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLineBorder(color.darker(), 2),
             BorderFactory.createEmptyBorder(16, 16, 12, 16)
@@ -275,7 +272,6 @@ public class GiaoDien extends JFrame {
 
         JPanel textPanel = new JPanel(new GridLayout(2, 1));
         textPanel.setBackground(color);
-        // Ensure text panel has a slight left padding to keep text clear of border
         textPanel.setBorder(BorderFactory.createEmptyBorder(2, 6, 2, 2));
 
         JLabel titleLabel = new JLabel(title);
@@ -293,8 +289,6 @@ public class GiaoDien extends JFrame {
 
         return card;
     }
-
-    // Icons removed: UI uses plain text only (no emoji or generated icons)
     
     private void taoQuanLySach() {
         JPanel bookPanel = new JPanel(new BorderLayout());
