@@ -58,7 +58,7 @@ public class QuanLyHoaDon implements IQuanLy<HoaDon> {
         return danhSachHoaDon.stream()
                 .filter(hd -> {
                     Date ngayLap = hd.getNgayLap();
-                    return (ngayLap.equals(tuNgay) || ngayLap.after(tuNgay)) & (ngayLap.equals(denNgay) || ngayLap.before(denNgay));
+                    return (ngayLap.equals(tuNgay) || ngayLap.after(tuNgay)) && (ngayLap.equals(denNgay) || ngayLap.before(denNgay));
                 })
                 .collect(Collectors.toList());
     }

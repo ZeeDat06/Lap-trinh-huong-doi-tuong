@@ -1,22 +1,63 @@
 import java.io.Serializable;
 
+/**
+ * Lớp Sách - Đóng gói thông tin sách và logic quản lý tồn kho
+ * Thể hiện tính Đóng gói (Encapsulation)
+ */
 public class Sach implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private String maSach;
     private String ten;
     private String tacGia;
+    private String nhaXuatBan;
     private String theLoai;
     private double giaBan;
     private int soLuongTon;
+    private boolean dangKinhDoanh; // Xóa mềm
     
     public Sach(String maSach, String ten, String tacGia, String theLoai, double giaBan, int soLuongTon) {
         this.maSach = maSach;
         this.ten = ten;
         this.tacGia = tacGia;
+        this.nhaXuatBan = "";
         this.theLoai = theLoai;
         this.giaBan = giaBan;
         this.soLuongTon = soLuongTon;
+        this.dangKinhDoanh = true;
     }
     
+    // Phương thức giảm số lượng tồn kho (khi bán hàng)
+    // Đảm bảo không bị âm - Thể hiện Đóng gói
+    public boolean giamSoLuongTon(int soLuong) {
+        if (soLuong <= 0) {
+            return false;
+        }
+        if (soLuongTon >= soLuong) {
+            soLuongTon -= soLuong;
+            return true;
+        }
+        return false; // Không đủ hàng
+    }
+    
+    // Phương thức tăng số lượng tồn kho (khi nhập hàng)
+    public void tangSoLuongTon(int soLuong) {
+        if (soLuong > 0) {
+            this.soLuongTon += soLuong;
+        }
+    }
+    
+    // Kiểm tra sắp hết hàng
+    public boolean sapHetHang() {
+        return soLuongTon < 10;
+    }
+    
+    // Ngừng kinh doanh (xóa mềm)
+    public void ngungKinhDoanh() {
+        this.dangKinhDoanh = false;
+    }
+    
+    // Getters and Setters
     public String getMaSach() { return maSach; }
     public void setMaSach(String maSach) { this.maSach = maSach; }
     
@@ -26,6 +67,9 @@ public class Sach implements Serializable {
     public String getTacGia() { return tacGia; }
     public void setTacGia(String tacGia) { this.tacGia = tacGia; }
     
+    public String getNhaXuatBan() { return nhaXuatBan; }
+    public void setNhaXuatBan(String nhaXuatBan) { this.nhaXuatBan = nhaXuatBan; }
+    
     public String getTheLoai() { return theLoai; }
     public void setTheLoai(String theLoai) { this.theLoai = theLoai; }
     
@@ -33,10 +77,18 @@ public class Sach implements Serializable {
     public void setGiaBan(double giaBan) { this.giaBan = giaBan; }
     
     public int getSoLuongTon() { return soLuongTon; }
-    public void setSoLuongTon(int soLuongTon) { this.soLuongTon = soLuongTon; }
+    public void setSoLuongTon(int soLuongTon) { 
+        if (soLuongTon >= 0) {
+            this.soLuongTon = soLuongTon; 
+        }
+    }
+    
+    public boolean isDangKinhDoanh() { return dangKinhDoanh; }
+    public void setDangKinhDoanh(boolean dangKinhDoanh) { this.dangKinhDoanh = dangKinhDoanh; }
     
     @Override
     public String toString() {
-        return String.format("Ma: %s | Ten: %s | Tac gia: %s | The loai: %s | Gia: %.2f | Ton: %d", maSach, ten, tacGia, theLoai, giaBan, soLuongTon);
+        return String.format("Ma: %s | Ten: %s | Tac gia: %s | The loai: %s | Gia: %.2f | Ton: %d", 
+            maSach, ten, tacGia, theLoai, giaBan, soLuongTon);
     }
 }
