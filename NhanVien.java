@@ -1,9 +1,5 @@
 import java.io.Serializable;
 
-/**
- * Lớp NhanVien kế thừa từ Person
- * Thể hiện tính Kế thừa (Inheritance)
- */
 public class NhanVien extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -32,12 +28,10 @@ public class NhanVien extends Person implements Serializable {
         return "Nhân viên";
     }
     
-    // Phương thức kiểm tra quyền
     public boolean coQuyenQuanLy() {
         return "Quản lý".equalsIgnoreCase(chucVu);
     }
     
-    // Getters and Setters
     public String getMaNhanVien() {
         return maNhanVien;
     }

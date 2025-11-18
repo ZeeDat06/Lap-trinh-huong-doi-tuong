@@ -1,9 +1,5 @@
 import java.io.Serializable;
 
-/**
- * Lớp trừu tượng Person - lớp cha cho tất cả các loại người dùng
- * Thể hiện tính Trừu tượng (Abstraction) và Kế thừa (Inheritance)
- */
 public abstract class Person implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -24,10 +20,8 @@ public abstract class Person implements Serializable {
         this.email = email;
     }
     
-    // Phương thức trừu tượng - các lớp con phải implement
     public abstract String getLoaiNguoiDung();
     
-    // Getters and Setters - Đóng gói (Encapsulation)
     public String getMaNguoiDung() {
         return maNguoiDung;
     }

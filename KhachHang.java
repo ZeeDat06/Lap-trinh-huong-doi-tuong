@@ -1,13 +1,11 @@
 import java.io.Serializable;
 
-/**
- * Lớp KhachHang kế thừa từ Person
- * Thể hiện tính Kế thừa (Inheritance) và Đa hình (Polymorphism)
- */
 public class KhachHang extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private String maKhachHang;
+    private String tenDangNhap;
+    private String matKhau;
     private int diemTichLuy;
     private double tongChiTieu;
     
@@ -22,40 +20,60 @@ public class KhachHang extends Person implements Serializable {
         this.tongChiTieu = 0;
     }
     
+    public KhachHang(String maKhachHang, String tenDangNhap, String matKhau, String hoTen, String dienThoai, String email) {
+        super(maKhachHang, hoTen, dienThoai, "", email);
+        this.maKhachHang = maKhachHang;
+        this.tenDangNhap = tenDangNhap;
+        this.matKhau = matKhau;
+        this.diemTichLuy = 0;
+        this.tongChiTieu = 0;
+    }
+    
     @Override
     public String getLoaiNguoiDung() {
         return isVIP() ? "Khách hàng VIP" : "Khách hàng";
     }
     
-    // Phương thức đa hình - có thể bị ghi đè trong lớp con
     public double tinhGiamGia(double tongTien) {
-        // Khách hàng thường: giảm giá theo điểm tích lũy
         if (isVIP()) {
-            return tongTien * 0.10; // VIP giảm 10%
+            return tongTien * 0.10;
         } else if (diemTichLuy >= 50) {
-            return tongTien * 0.05; // Có 50 điểm trở lên giảm 5%
+            return tongTien * 0.05;
         }
         return 0;
     }
     
-    // Kiểm tra có phải VIP không (chi tiêu >= 10 triệu)
     public boolean isVIP() {
         return tongChiTieu >= 10000000;
     }
     
-    // Cập nhật điểm tích lũy khi mua hàng
     public void capNhatDiemTichLuy(double soTienMua) {
-        this.diemTichLuy += (int)(soTienMua / 100000); // 100k = 1 điểm
+        this.diemTichLuy += (int)(soTienMua / 100000);
         this.tongChiTieu += soTienMua;
     }
     
-    // Getters and Setters
     public String getMaKhachHang() {
         return maKhachHang;
     }
     
     public void setMaKhachHang(String maKhachHang) {
         this.maKhachHang = maKhachHang;
+    }
+    
+    public String getTenDangNhap() {
+        return tenDangNhap;
+    }
+    
+    public void setTenDangNhap(String tenDangNhap) {
+        this.tenDangNhap = tenDangNhap;
+    }
+    
+    public String getMatKhau() {
+        return matKhau;
+    }
+    
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
     
     public String getDienThoai() {

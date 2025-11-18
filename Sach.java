@@ -1,9 +1,5 @@
 import java.io.Serializable;
 
-/**
- * Lớp Sách - Đóng gói thông tin sách và logic quản lý tồn kho
- * Thể hiện tính Đóng gói (Encapsulation)
- */
 public class Sach implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -14,7 +10,7 @@ public class Sach implements Serializable {
     private String theLoai;
     private double giaBan;
     private int soLuongTon;
-    private boolean dangKinhDoanh; // Xóa mềm
+    private boolean dangKinhDoanh;
     
     public Sach(String maSach, String ten, String tacGia, String theLoai, double giaBan, int soLuongTon) {
         this.maSach = maSach;
@@ -27,8 +23,6 @@ public class Sach implements Serializable {
         this.dangKinhDoanh = true;
     }
     
-    // Phương thức giảm số lượng tồn kho (khi bán hàng)
-    // Đảm bảo không bị âm - Thể hiện Đóng gói
     public boolean giamSoLuongTon(int soLuong) {
         if (soLuong <= 0) {
             return false;
@@ -37,27 +31,23 @@ public class Sach implements Serializable {
             soLuongTon -= soLuong;
             return true;
         }
-        return false; // Không đủ hàng
+        return false;
     }
     
-    // Phương thức tăng số lượng tồn kho (khi nhập hàng)
     public void tangSoLuongTon(int soLuong) {
         if (soLuong > 0) {
             this.soLuongTon += soLuong;
         }
     }
     
-    // Kiểm tra sắp hết hàng
     public boolean sapHetHang() {
         return soLuongTon < 10;
     }
     
-    // Ngừng kinh doanh (xóa mềm)
     public void ngungKinhDoanh() {
         this.dangKinhDoanh = false;
     }
     
-    // Getters and Setters
     public String getMaSach() { return maSach; }
     public void setMaSach(String maSach) { this.maSach = maSach; }
     

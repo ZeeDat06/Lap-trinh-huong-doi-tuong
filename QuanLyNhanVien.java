@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Lớp Quản lý Nhân viên
- */
 public class QuanLyNhanVien implements IQuanLy<NhanVien> {
     private List<NhanVien> danhSach;
     
@@ -46,7 +43,6 @@ public class QuanLyNhanVien implements IQuanLy<NhanVien> {
         return new ArrayList<>(danhSach);
     }
     
-    // Tìm nhân viên theo tài khoản
     public NhanVien timKiemTheoTaiKhoan(String taiKhoan) {
         for (NhanVien nv : danhSach) {
             if (nv.getTaiKhoan().equals(taiKhoan)) {
@@ -56,7 +52,6 @@ public class QuanLyNhanVien implements IQuanLy<NhanVien> {
         return null;
     }
     
-    // Đăng nhập
     public NhanVien dangNhap(String taiKhoan, String matKhau) {
         NhanVien nv = timKiemTheoTaiKhoan(taiKhoan);
         if (nv != null && nv.getMatKhau().equals(matKhau)) {

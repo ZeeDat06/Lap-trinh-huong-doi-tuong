@@ -66,6 +66,7 @@ public class GiaoDien extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 800);
         setLocationRelativeTo(null);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         taoGiaoDien();
         setVisible(true);
@@ -207,7 +208,6 @@ public class GiaoDien extends JFrame {
     }
     
     private void capNhatTrangTongQuan() {
-        // Xóa panel cũ và tạo lại panel tổng quan (chỉ cập nhật dữ liệu, không chuyển hướng)
         for (Component comp : mainContentPanel.getComponents()) {
             if (comp instanceof JPanel) {
                 String name = ((JPanel) comp).getName();
@@ -218,7 +218,6 @@ public class GiaoDien extends JFrame {
             }
         }
         taoTrangChu();
-        // Không gọi cardLayout.show() để người dùng vẫn ở lại trang hiện tại
     }
     
     private void taoTrangChu() {
@@ -230,8 +229,8 @@ public class GiaoDien extends JFrame {
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
         titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
         
-        JPanel dashboardStatsPanel = new JPanel(new GridLayout(2, 2, 15, 15));
-        dashboardStatsPanel.setBackground(Color.WHITE);
+        JPanel statsPanel = new JPanel(new GridLayout(2, 2, 15, 15));
+        statsPanel.setBackground(Color.WHITE);
         
         JPanel card1 = taoTheThongKe("", "Tổng sách", String.valueOf(quanLySach.layTatCa().size()), new Color(41, 128, 185));
         JPanel card2 = taoTheThongKe("", "Khách hàng", String.valueOf(quanLyKhachHang.layTatCa().size()), new Color(39, 174, 96));
@@ -242,10 +241,10 @@ public class GiaoDien extends JFrame {
                 .sum();
         JPanel card4 = taoTheThongKe("", "Doanh thu", String.format("%,.0f VND", totalRevenue), new Color(231, 76, 60));
         
-        dashboardStatsPanel.add(card1);
-        dashboardStatsPanel.add(card2);
-        dashboardStatsPanel.add(card3);
-        dashboardStatsPanel.add(card4);
+        statsPanel.add(card1);
+        statsPanel.add(card2);
+        statsPanel.add(card3);
+        statsPanel.add(card4);
         
         JPanel recentPanel = new JPanel(new BorderLayout());
         recentPanel.setBackground(Color.WHITE);
@@ -273,7 +272,7 @@ public class GiaoDien extends JFrame {
         recentPanel.add(scrollPane, BorderLayout.CENTER);
         
         dashboardPanel.add(titleLabel, BorderLayout.NORTH);
-        dashboardPanel.add(dashboardStatsPanel, BorderLayout.CENTER);
+        dashboardPanel.add(statsPanel, BorderLayout.CENTER);
         dashboardPanel.add(recentPanel, BorderLayout.SOUTH);
         
         mainContentPanel.add(dashboardPanel, "DASHBOARD");

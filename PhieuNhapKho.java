@@ -1,10 +1,6 @@
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Lớp PhieuNhapKho - Quản lý nhập kho
- * Thể hiện tính Đóng gói (Encapsulation)
- */
 public class PhieuNhapKho implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -32,12 +28,10 @@ public class PhieuNhapKho implements Serializable {
         this.tongTien = soLuongNhap * giaNhap;
     }
     
-    // Phương thức nhập kho - cập nhật số lượng tồn
     public void nhapKho() {
         sach.tangSoLuongTon(soLuongNhap);
     }
     
-    // Getters and Setters
     public String getMaPhieu() {
         return maPhieu;
     }

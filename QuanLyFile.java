@@ -1,9 +1,6 @@
 import java.io.*;
 import java.util.List;
 
-/**
- * Lớp quản lý đọc/ghi file - Lưu trữ dữ liệu bền vững
- */
 public class QuanLyFile {
     
     public static void ghiDuLieuSach(List<Sach> danhSachSach, String tenFile) {
@@ -60,7 +57,6 @@ public class QuanLyFile {
         }
     }
     
-    // Thêm các phương thức cho NhanVien và PhieuNhapKho
     public static void ghiDuLieuNhanVien(List<NhanVien> danhSach, String tenFile) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(tenFile))) {
             oos.writeObject(danhSach);

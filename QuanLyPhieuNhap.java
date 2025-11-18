@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Lớp Quản lý Phiếu nhập kho
- */
 public class QuanLyPhieuNhap implements IQuanLy<PhieuNhapKho> {
     private List<PhieuNhapKho> danhSach;
     
@@ -14,7 +11,6 @@ public class QuanLyPhieuNhap implements IQuanLy<PhieuNhapKho> {
     @Override
     public void them(PhieuNhapKho phieu) {
         danhSach.add(phieu);
-        // Tự động cập nhật kho
         phieu.nhapKho();
     }
     
